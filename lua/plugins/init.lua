@@ -1,0 +1,18 @@
+return {
+  { import = "nvchad.blink.lazyspec" },
+  { import = "plugins.conform" },
+  { import = "plugins.nvim-lspconfig" },
+  { import = "plugins.nvim-treesitter" },
+  { import = "plugins.auto-session" },
+  { import = "plugins.copilot" },
+  { import = "plugins.vimtex" },
+  { import = "plugins.vim-be-good" },
+  { import = "plugins.nvim-dap" },
+  { import = "plugins.trouble" },
+  { import = "plugins.nvim-ufo" },
+  { import = "plugins.noice" },
+  { import = "plugins.diffview" },
+  { import = "plugins.yazi" },
+  { import = "plugins.lazygit" },
+  { import = "plugins.avante" },
+}
