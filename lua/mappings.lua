@@ -71,3 +71,29 @@ map("n", "<leader>ti", function()
     print "Switched to 2-space indentation"
   end
 end, { desc = "Toggle between 2-space and 4-space indentation" })
+
+map("n", "<F5>", function()
+  require("nvchad.term").runner {
+    id = "horizontalTerm",
+    pos = "sp",
+
+    cmd = function()
+      local file = vim.fn.expand "%"
+      local fNoExt = file:gsub("%..*", "")
+
+      local ft_cmds = {
+        python = "python3 " .. file,
+        cpp = "clear && g++ --std=c++17 -DLOCAL -Wall -Wextra -Wshadow -O2 -lm -o "
+          .. fNoExt
+          .. " "
+          .. file
+          .. " && ./"
+          .. fNoExt
+          .. " <in.txt | tee out.txt",
+      }
+      -- print(ft_cmds["cpp"])
+
+      return ft_cmds[vim.bo.ft]
+    end,
+  }
+end, { desc = "Run code" })
