@@ -38,6 +38,10 @@ local M = {
       "haskell",
       "php",
     },
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = { "latex" }, -- Needed for vimtex!
+    },
   },
 }
 
