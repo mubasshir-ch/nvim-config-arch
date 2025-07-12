@@ -97,3 +97,15 @@ map("n", "<F5>", function()
     end,
   }
 end, { desc = "Run code" })
+
+-- Tmux Navigator
+--   { "<C-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+--   { "<C-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+--   { "<C-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+--   { "<C-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+--   { "<C-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Tmux Navigate Left" })
+map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Tmux Navigate Down" })
+map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Tmux Navigate Up" })
+map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Tmux Navigate Right" })
+map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Tmux Navigate Previous" })
