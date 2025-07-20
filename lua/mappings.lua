@@ -16,15 +16,15 @@ end, { desc = "Toggle inlay hints" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- Copilot
-map("i", "<C-j>", 'copilot#Accept("<CR>")', {
+map("i", "<C-j>", 'copilot#Accept("\\<CR>")', {
   expr = true,
+  replace_keycodes = false,
   -- silent = true,
   -- script = true,
   desc = "Copilot Accept Suggestion",
 })
 
-map("i", "<C-l>", "copilot#AcceptWord()", {
-  expr = true,
+map("i", "<C-l>", "<Plug>(copilot-accept-word)", {
   -- silent = true,
   -- script = true,
   desc = "Copilot Accept Word",

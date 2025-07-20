@@ -1,5 +1,5 @@
 return {
-  { import = "nvchad.blink.lazyspec" },
+  -- { import = "nvchad.blink.lazyspec" },
   { import = "plugins.conform" },
   { import = "plugins.nvim-lspconfig" },
   { import = "plugins.nvim-treesitter" },
