@@ -73,14 +73,14 @@ map("n", "<leader>ti", function()
 end, { desc = "Toggle between 2-space and 4-space indentation" })
 
 map("n", "<F5>", function()
+  local file = vim.fn.expand "%"
+  local fNoExt = file:gsub("%..*", "")
+  local ft = vim.bo.filetype
   require("nvchad.term").runner {
     id = "horizontalTerm",
     pos = "sp",
 
     cmd = function()
-      local file = vim.fn.expand "%"
-      local fNoExt = file:gsub("%..*", "")
-
       local ft_cmds = {
         python = "python3 " .. file,
         cpp = "clear && g++ --std=c++17 -DLOCAL -Wall -Wextra -Wshadow -O2 -lm -o "
@@ -91,19 +91,11 @@ map("n", "<F5>", function()
           .. fNoExt
           .. " <in.txt | tee out.txt",
       }
-      -- print(ft_cmds["cpp"])
-
-      return ft_cmds[vim.bo.ft]
+      return ft_cmds[ft]
     end,
   }
 end, { desc = "Run code" })
 
--- Tmux Navigator
---   { "<C-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
---   { "<C-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
---   { "<C-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
---   { "<C-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
---   { "<C-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 map("n", "<C-h>", "<cmd>TmuxNavigateLeft<cr>", { desc = "Tmux Navigate Left" })
 map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Tmux Navigate Down" })
 map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Tmux Navigate Up" })

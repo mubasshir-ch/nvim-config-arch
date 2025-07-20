@@ -15,4 +15,5 @@ return {
   { import = "plugins.yazi" },
   { import = "plugins.lazygit" },
   { import = "plugins.avante" },
+  { import = "plugins.vim-tmux-navigator" },
 }
