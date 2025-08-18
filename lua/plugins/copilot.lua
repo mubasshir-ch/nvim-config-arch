@@ -1,16 +1,19 @@
 local M = {
-  "github/copilot.vim",
-  lazy = false,
-  config = function() -- Mapping tab is already used by NvChad
-    vim.g.copilot_no_tab_map = true
-    vim.g.copilot_assume_mapped = true
-    vim.g.copilot_tab_fallback = ""
-    vim.g.copilot_node_command = "/home/mub/.nvm/versions/node/v22.17.0/bin/node"
-    -- The mapping is set to other key, see custom/lua/mappings
-    -- or run <leader>ch to see copilot mapping section
-    vim.g.copilot_filetypes = {
-      cpp = false,
-    }
-  end,
+  "zbirenbaum/copilot.lua",
+  opts = {
+    suggestion = {
+      auto_trigger = true, -- show suggestions automatically
+      keymap = {
+        accept = "<C-j>", -- accept entire suggestion
+        accept_word = "<C-l>", -- accept a single word
+        dismiss = "<C-k>", -- dismiss suggestion
+      },
+    },
+    panel = { enabled = false }, -- disable side panel if you don't use it
+    filetypes = {
+      ["*"] = true, -- enable for all filetypes
+    },
+  },
 }
+
 return M

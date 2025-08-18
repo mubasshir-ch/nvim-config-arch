@@ -79,7 +79,6 @@ map("n", "<F5>", function()
   require("nvchad.term").runner {
     id = "horizontalTerm",
     pos = "sp",
-
     cmd = function()
       local ft_cmds = {
         python = "python3 " .. file,
@@ -101,3 +100,8 @@ map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Tmux Navigate Down" })
 map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Tmux Navigate Up" })
 map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Tmux Navigate Right" })
 map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Tmux Navigate Previous" })
+
+map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { noremap = true, silent = true })
+
+-- map ctrl + backspace to delete the previous word
+map("i", "<C-h>", "<C-w>", { noremap = true, silent = true, desc = "Delete previous word" })
