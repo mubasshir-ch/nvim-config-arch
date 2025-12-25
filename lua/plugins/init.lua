@@ -1,5 +1,5 @@
 return {
-  -- { import = "nvchad.blink.lazyspec" },
+  { import = "nvchad.blink.lazyspec" },
   { import = "plugins.conform" },
   { import = "plugins.nvim-lspconfig" },
   { import = "plugins.nvim-treesitter" },
@@ -14,6 +14,8 @@ return {
   { import = "plugins.diffview" },
   { import = "plugins.yazi" },
   { import = "plugins.lazygit" },
+  { import = "plugins.mcphub" },
   { import = "plugins.avante" },
   { import = "plugins.vim-tmux-navigator" },
+  { import = "plugins.harpoon" },
 }

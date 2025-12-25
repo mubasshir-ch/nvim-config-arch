@@ -11,12 +11,11 @@ local M = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
         ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-        -- ["vim.lsp.handlers.signature_help"] = false,
       },
       signature = {
         enabled = false,
         auto_open = {
-          enabled = false,
+          enabled = true,
         },
         focusable = false,
       },

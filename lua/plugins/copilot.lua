@@ -11,6 +11,7 @@ local M = {
     },
     panel = { enabled = false }, -- disable side panel if you don't use it
     filetypes = {
+      cpp = false,
       ["*"] = true, -- enable for all filetypes
     },
   },

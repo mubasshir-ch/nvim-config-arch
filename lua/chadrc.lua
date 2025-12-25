@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-  theme = "catppuccin",
+  theme = "material-deep-ocean",
   -- transparency = true,
   -- hl_override = {
   -- 	Comment = { italic = true },
@@ -18,9 +18,10 @@ M.ui = {
   cmp = {
     icons = true,
     lspkind_text = true,
-    style = "atom_colored", -- default/flat_light/flat_dark/atom/atom_colored
+    style = "flat_dark", -- default/flat_light/flat_dark/atom/atom_colored
     format_colors = {
-      tailwind = false,
+      -- tailwind = false,
+      lsp = true,
     },
   },
 }
