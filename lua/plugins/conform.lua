@@ -1,6 +1,6 @@
 local M = {
   "stevearc/conform.nvim",
-  event = "BufWritePre", -- uncomment for format on save
+  event = "User FilePost",
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },

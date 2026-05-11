@@ -1,5 +1,6 @@
 local M = {
   "nvim-treesitter/nvim-treesitter",
+  event = "User FilePost",
   dependencies = {
     { "nvim-treesitter/nvim-treesitter-context", lazy = false },
     {
@@ -37,6 +38,8 @@ local M = {
       "xml",
       "haskell",
       "php",
+      "luadoc",
+      "printf",
     },
     highlight = {
       enable = true,
