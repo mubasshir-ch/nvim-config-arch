@@ -41,9 +41,14 @@ if require("nvconfig").ui.tabufline.enabled then
     end, { desc = "buffer goto prev" })
 
     map("n", "<leader>x", function()
-        require("nvchad.tabufline").close_buffer()
-    end, { desc = "buffer close" })
-end
+        require("scope.core").close_buffer()
+    end, { desc = "buffer close (smart scope)" })
+    end
+-- Native Tabs
+map("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "New tab" })
+map("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
+map("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "Only tab" })
+map("n", "<leader>ts", "<cmd>tab split<cr>", { desc = "Current buffer in new tab" })
 
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
@@ -56,6 +61,7 @@ map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window"
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
+map("n", "<leader>fB", "<cmd>Telescope scope buffers<CR>", { desc = "telescope find all buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
 map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
@@ -69,8 +75,10 @@ map("n", "<leader>th", function()
 end, { desc = "telescope nvchad themes" })
 
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
+map("n", "<leader>fr", "<cmd>Telescope resume<cr>", { desc = "telescope resume last search" })
 map(
-    "n",
+  "n",
+
     "<leader>fa",
     "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
     { desc = "telescope find all files" }

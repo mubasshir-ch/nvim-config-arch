@@ -20,7 +20,7 @@ return {
         n = { ["q"] = function(...) return require("telescope.actions").close(...) end },
       },
     },
-    extensions_list = { "themes", "terms" },
+    extensions_list = { "themes", "terms", "scope" },
     extensions = {},
   },
   config = function(_, opts)
