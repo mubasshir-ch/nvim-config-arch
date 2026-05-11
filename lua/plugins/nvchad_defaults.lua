@@ -5,7 +5,15 @@ return {
     "nvchad/base46",
     lazy = false,
     config = function()
-      require("base46").load_all_highlights()
+      local base46 = require "base46"
+      base46.load_all_highlights()
+
+      -- load theme
+      dofile(vim.g.base46_cache .. "defaults")
+      dofile(vim.g.base46_cache .. "colors")
+      dofile(vim.g.base46_cache .. "statusline")
+      dofile(vim.g.base46_cache .. "syntax")
+      dofile(vim.g.base46_cache .. "treesitter")
     end,
   },
 
@@ -16,8 +24,6 @@ return {
       require "nvchad"
     end,
   },
-
-  { import = "nvchad.blink.lazyspec" },
 
   "nvzone/volt",
   "nvzone/menu",

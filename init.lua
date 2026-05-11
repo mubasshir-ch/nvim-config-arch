@@ -19,21 +19,9 @@ require("lazy").setup({
     { import = "plugins" },
 }, lazy_config)
 
--- load theme
-dofile(vim.g.base46_cache .. "defaults")
-dofile(vim.g.base46_cache .. "colors")
-dofile(vim.g.base46_cache .. "statusline")
-dofile(vim.g.base46_cache .. "syntax")
-dofile(vim.g.base46_cache .. "treesitter")
-
--- Alias LspInfo to checkhealth vim.lsp for convenience in Neovim 0.11+
-vim.api.nvim_create_user_command("LspInfo", function()
-    vim.cmd "checkhealth vim.lsp"
-end, { desc = "LSP information (checkhealth alias)" })
-
-require "options"
-require "autocmds"
+require "core.options"
+require "core.autocmds"
 
 vim.schedule(function()
-    require "mappings"
+    require "core.mappings"
 end)
