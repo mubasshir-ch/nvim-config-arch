@@ -43,7 +43,7 @@ if require("nvconfig").ui.tabufline.enabled then
     map("n", "<leader>x", function()
         require("scope.core").close_buffer()
     end, { desc = "buffer close (smart scope)" })
-    end
+end
 -- Native Tabs
 map("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "New tab" })
 map("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
@@ -77,7 +77,7 @@ end, { desc = "telescope nvchad themes" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
 map("n", "<leader>fr", "<cmd>Telescope resume<cr>", { desc = "telescope resume last search" })
 map(
-  "n",
+    "n",
 
     "<leader>fa",
     "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
@@ -196,11 +196,11 @@ map("n", "<F5>", function()
         cmd = function()
             local ft_cmds = {
                 python = "python3 " .. file,
-                cpp = "clear && g++ --std=c++17 -DLOCAL -Wall -Wextra -Wshadow -O2 -lm -o "
+                cpp = "clear && g++ --std=c++23 -DLOCAL -Wall -Wextra -Wshadow -O2 -lm -o "
                     .. fNoExt
                     .. " "
                     .. file
-                    .. " && ./"
+                    .. " && "
                     .. fNoExt
                     .. " <in.txt | tee out.txt",
             }
