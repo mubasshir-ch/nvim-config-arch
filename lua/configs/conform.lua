@@ -8,6 +8,7 @@ local options = {
         javascript = { "prettier" },
         typescript = { "prettier" },
         cpp = { "clang_format" },
+        markdown = { "prettier" },
     },
     timeout_ms = 5000,
     format_on_save = {

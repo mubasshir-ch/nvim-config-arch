@@ -14,6 +14,7 @@ local servers = {
     "prismals",
     "basedpyright",
     "clangd",
+    "marksman",
 }
 
 local M = {
