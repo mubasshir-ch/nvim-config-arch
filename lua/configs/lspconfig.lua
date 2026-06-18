@@ -6,6 +6,45 @@ M.on_attach = function(client, bufnr)
         return { buffer = bufnr, desc = "LSP " .. desc }
     end
 
+    -- basedpyright specific mapping
+    if client.name == "basedpyright" then
+        map("n", "<leader>tp", function()
+            local modes = { "off", "basic", "standard", "strict", "all" }
+            vim.ui.select(modes, {
+                prompt = "Select Basedpyright Type Checking Mode:",
+            }, function(choice)
+                if choice then
+                    local new_settings = {
+                        basedpyright = {
+                            analysis = {
+                                typeCheckingMode = choice,
+                            },
+                        },
+                        python = {
+                            analysis = {
+                                typeCheckingMode = choice,
+                            },
+                        },
+                    }
+
+                    -- Update current client
+                    client.settings = vim.tbl_deep_extend("force", client.settings or {}, new_settings)
+                    client.config.settings = client.settings
+                    client:notify("workspace/didChangeConfiguration", {
+                        settings = client.settings,
+                    })
+
+                    -- Update global config so new buffers/files inherit this mode
+                    vim.lsp.config("basedpyright", {
+                        settings = client.settings,
+                    })
+
+                    vim.notify("Basedpyright mode set to: " .. choice)
+                end
+            end)
+        end, opts "Change type checking mode")
+    end
+
     -- vim.notify("LSP attached: " .. client.name, vim.log.levels.INFO)
     map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
     map("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
@@ -29,24 +68,6 @@ M.on_attach = function(client, bufnr)
 
     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
     map("n", "gr", vim.lsp.buf.references, opts "Show references")
-
-    -- basedpyright specific mapping
-    if client.name == "basedpyright" then
-        map("n", "<leader>tp", function()
-            local modes = { "off", "basic", "standard", "strict", "all" }
-            vim.ui.select(modes, {
-                prompt = "Select Basedpyright Type Checking Mode:",
-            }, function(choice)
-                if choice then
-                    client.config.settings.basedpyright.analysis.typeCheckingMode = choice
-                    client.notify("workspace/didChangeConfiguration", {
-                        settings = client.config.settings,
-                    })
-                    vim.notify("Basedpyright mode set to: " .. choice)
-                end
-            end)
-        end, opts "Change type checking mode")
-    end
 end
 
 M.on_init = function(client, _)

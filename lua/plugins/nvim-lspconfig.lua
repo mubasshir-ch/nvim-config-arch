@@ -14,6 +14,7 @@ local servers = {
     "prismals",
     "basedpyright",
     "clangd",
+    "marksman",
 }
 
 local M = {
@@ -35,19 +36,36 @@ local M = {
         dofile(vim.g.base46_cache .. "lsp")
         require("nvchad.lsp").diagnostic_config()
 
-        -- Manually set signs if NvChad's diagnostic_config is overwritten
+        -- Set global diagnostic signs
         local x = vim.diagnostic.severity
         vim.diagnostic.config {
             signs = { text = { [x.ERROR] = "󰅙", [x.WARN] = "", [x.INFO] = "󰋼", [x.HINT] = "󰌵" } },
         }
 
-        -- Enable all servers using the native Neovim 0.11+ API
+        -- Set global defaults for all servers
+        vim.lsp.config("*", {
+            on_init = config.on_init,
+            capabilities = config.capabilities,
+        })
+
+        -- Setup on_attach logic (keymaps, etc.) via autocommand
+        vim.api.nvim_create_autocmd("LspAttach", {
+            callback = function(args)
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+                if client then
+                    config.on_attach(client, args.buf)
+                end
+            end,
+        })
+
+        -- Enable all servers
         for _, lsp in ipairs(servers) do
-            vim.lsp.config(lsp, {
-                on_attach = config.on_attach,
-                on_init = config.on_init,
-                capabilities = config.capabilities,
-            })
+            -- Load user custom config if it exists (~/.config/nvim/lsp/server.lua)
+            local custom_opts_path = vim.fn.stdpath "config" .. "/lsp/" .. lsp .. ".lua"
+            if vim.fn.filereadable(custom_opts_path) == 1 then
+                vim.lsp.config(lsp, dofile(custom_opts_path))
+            end
+
             vim.lsp.enable(lsp)
         end
     end,
