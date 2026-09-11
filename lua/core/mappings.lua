@@ -196,11 +196,12 @@ map("n", "<F5>", function()
         cmd = function()
             local ft_cmds = {
                 python = "python3 " .. file,
-                cpp = "clear && g++ --std=c++23 -DLOCAL -Wall -Wextra -Wshadow -O2 -lm -o "
+                cpp =
+                    "clear && g++ --std=c++23 -DLOCAL -g -Wall -Wextra -Wshadow -fsanitize=address,undefined -O2 -lm -o "
                     .. fNoExt
                     .. " "
                     .. file
-                    .. " && "
+                    .. " && ./"
                     .. fNoExt
                     .. " <in.txt | tee out.txt",
             }

@@ -5,7 +5,17 @@ return {
     opts = function()
         return require "configs.avante"
     end,
-    build = "make",
+    build = function()
+        local patch = vim.fn.stdpath("config") .. "/lua/configs/patches/avante-reasoning-content.diff"
+        if vim.fn.filereadable(patch) == 1 then
+            vim.fn.system("git apply --check " .. patch)
+            if vim.v.shell_error == 0 then
+                vim.notify("avante: applying reasoning_content patch", vim.log.levels.INFO)
+                vim.fn.system("git apply " .. patch)
+            end
+        end
+        vim.fn.system("make")
+    end,
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
         "stevearc/dressing.nvim",

@@ -1,26 +1,18 @@
 local options = {
-    provider = "copilot",
-    cursor_applying_provider = "copilot",
+    -- provider = "deepseek",
+    -- cursor_applying_provider = "deepseek",
+    providers = {
+        deepseek = {
+            __inherited_from = "openai",
+            endpoint = "https://api.deepseek.com/v1",
+            model = "deepseek-v4-flash",
+            api_key_name = "AVANTE_DEEPSEEK_API_KEY",
+            always_echo_reasoning = true,
+        },
+    },
     behaviour = {
         enable_cursor_planning_mode = true,
     },
-    system_prompt = function()
-        local ok, mcphub = pcall(require, "mcphub")
-        if not ok then
-            return ""
-        end
-        local hub = mcphub.get_hub_instance()
-        return hub and hub:get_active_servers_prompt() or ""
-    end,
-    custom_tools = function()
-        local ok, mcp_avante = pcall(require, "mcphub.extensions.avante")
-        if not ok then
-            return {}
-        end
-        return {
-            mcp_avante.mcp_tool(),
-        }
-    end,
 }
 
 return options
