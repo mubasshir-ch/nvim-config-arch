@@ -188,7 +188,11 @@ end, { desc = "Toggle between 2-space and 4-space indentation" })
 
 map("n", "<F5>", function()
     local file = vim.fn.expand "%"
-    local fNoExt = file:gsub("%..*", "")
+    local fNoExt = vim.fn.expand "%:r"
+    local exe = fNoExt
+    if not exe:match "^/" and not exe:match "^%./" then
+        exe = "./" .. exe
+    end
     local ft = vim.bo.filetype
     require("nvchad.term").runner {
         id = "horizontalTerm",
@@ -198,11 +202,11 @@ map("n", "<F5>", function()
                 python = "python3 " .. file,
                 cpp =
                     "clear && g++ --std=c++23 -DLOCAL -Wall -Wextra -Wshadow -O2 -lm -g -fsanitize=address,undefined -o "
-                    .. fNoExt
+                    .. exe
                     .. " "
                     .. file
                     .. " && "
-                    .. fNoExt
+                    .. exe
                     .. " <in.txt | tee out.txt",
             }
             return ft_cmds[ft]
