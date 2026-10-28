@@ -129,27 +129,11 @@ end, { desc = "Toggle inlay hints" })
 -- map ctrl + s to save (:w)
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
--- Copilot
-map("i", "<C-j>", 'copilot#Accept("\\<CR>")', {
-    expr = true,
-    replace_keycodes = false,
-    -- silent = true,
-    -- script = true,
-    desc = "Copilot Accept Suggestion",
-})
-
-map("i", "<C-l>", "<Plug>(copilot-accept-word)", {
-    -- silent = true,
-    -- script = true,
-    desc = "Copilot Accept Word",
-})
-
-map("i", "<C-k>", "copilot#Dismiss()", {
-    expr = true,
-    -- silent = true,
-    -- script = true,
-    desc = "Copilot Dismiss",
-})
+-- Copilot keymaps are handled in lua/plugins/copilot.lua by zbirenbaum/copilot.lua
+-- (The below mappings were for the legacy github/copilot.vim plugin)
+-- map("i", "<C-j>", 'copilot#Accept("\\<CR>")', { expr = true, replace_keycodes = false, desc = "Copilot Accept Suggestion" })
+-- map("i", "<C-l>", "<Plug>(copilot-accept-word)", { desc = "Copilot Accept Word" })
+-- map("i", "<C-k>", "copilot#Dismiss()", { expr = true, desc = "Copilot Dismiss" })
 
 -- map ctrl + a to select all
 map({ "n", "i", "v" }, "<C-a>", "gg0VG$", { noremap = true, silent = true })
