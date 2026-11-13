@@ -4,11 +4,11 @@ local M = {
     dependencies = {
         "nvim-telescope/telescope.nvim",              -- Only needed if you want to use session lens
     },
-    bypass_save_filetypes = { "alpha", "dashboard" }, -- or whatever dashboard you use
     ---enables autocomplete for opts
     ---@module "auto-session"
     ---@type AutoSession.Config
     opts = {
+        bypass_save_filetypes = { "alpha", "dashboard", "nvdash" }, -- or whatever dashboard you use
         suppressed_dirs = { "~/", "~/productivity/", "~/Downloads", "/" },
         -- log_level = 'debug',
         auto_restore_last_session = false,

@@ -11,9 +11,12 @@ return {
         "stevearc/dressing.nvim",
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
+        {
+            "ColinKennedy/mega.cmdparse",
+            dependencies = { "ColinKennedy/mega.logging" },
+        },
         "echasnovski/mini.pick",
         "nvim-telescope/telescope.nvim",
-        "hrsh7th/nvim-cmp",
         "ibhagwan/fzf-lua",
         "nvim-tree/nvim-web-devicons",
         "zbirenbaum/copilot.lua",

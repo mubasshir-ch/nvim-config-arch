@@ -74,11 +74,11 @@ local M = {
       "zK",
       function()
         local winId = require("ufo").peekFoldedLinesUnderCursor()
-        if winId then
-          vim.lsp.buf.hover { win = winId }
+        if not winId then
+          vim.lsp.buf.hover()
         end
       end,
-      { desc = "Peek Folding" },
+      desc = "Peek Folding",
     },
   },
 }

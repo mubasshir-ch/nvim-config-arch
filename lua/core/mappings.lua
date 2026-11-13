@@ -22,7 +22,7 @@ map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
 
 map({ "n", "x" }, "<leader>fm", function()
-    require("conform").format { lsp_fallback = true }
+    require("conform").format { lsp_format = "fallback" }
 end, { desc = "general format file" })
 
 -- global lsp mappings
