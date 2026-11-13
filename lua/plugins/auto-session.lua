@@ -11,7 +11,10 @@ local M = {
         bypass_save_filetypes = { "alpha", "dashboard", "nvdash" }, -- or whatever dashboard you use
         suppressed_dirs = { "~/", "~/productivity/", "~/Downloads", "/" },
         -- log_level = 'debug',
+        auto_save = true,
+        auto_restore = true,
         auto_restore_last_session = false,
+        args_allow_files_auto_save = true,
     },
     keys = {
         -- Will use Telescope if installed or a vim.ui.select picker otherwise
