@@ -23,20 +23,20 @@ ueberzug_scale = 1
 
 [opener]
 edit = [
-	{ run = '${EDITOR:-nvim} "$@"', block = true, desc = "Neovim" },
+	{ run = '${EDITOR:-nvim} %s', block = true, desc = "Neovim" },
 ]
 open = [
-	{ run = 'xdg-open "$@"', orphan = true, desc = "Open with default application" },
+	{ run = 'xdg-open %s1', orphan = true, desc = "Open with default application" },
 ]
 image = [
-	{ run = 'swappy -f "$1"', orphan = true, desc = "Swappy Image Viewer" },
-	{ run = 'xdg-open "$@"', orphan = true, desc = "System Default" },
+	{ run = 'swappy -f %s1', orphan = true, desc = "Swappy Image Viewer" },
+	{ run = 'xdg-open %s1', orphan = true, desc = "System Default" },
 ]
 video = [
-	{ run = 'vlc "$@"', orphan = true, desc = "VLC Media Player" },
+	{ run = 'vlc %s', orphan = true, desc = "VLC Media Player" },
 ]
 pdf = [
-	{ run = 'zathura "$@"', orphan = true, desc = "Zathura PDF Reader" },
+	{ run = 'zathura %s', orphan = true, desc = "Zathura PDF Reader" },
 ]
 
 [open]
