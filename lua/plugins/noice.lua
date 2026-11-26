@@ -5,12 +5,10 @@ local M = {
 
   opts = {
     -- add any options here
-    stages = "static",
     lsp = {
       override = {
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
-        ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
       },
       signature = {
         enabled = false,
@@ -66,6 +64,7 @@ local M = {
     {
       "rcarriga/nvim-notify",
       opts = {
+        stages = "static",
         render = "compact", -- default, compact, minimal, simple
         timeout = 1000,
         top_down = false,

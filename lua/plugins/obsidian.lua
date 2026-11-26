@@ -3,6 +3,9 @@ return {
     version = "*", -- use latest release instead of latest commit
     lazy = true,
     ft = "markdown",
+    cond = function()
+        return vim.fn.isdirectory(vim.fn.expand "~/Obsidian Vault") == 1
+    end,
     dependencies = {
         "nvim-lua/plenary.nvim",
     },

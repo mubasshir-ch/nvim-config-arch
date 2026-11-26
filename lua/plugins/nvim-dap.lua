@@ -1,6 +1,5 @@
 local M = {
   "mfussenegger/nvim-dap",
-  lazy = false, -- Load it eagerly
   config = function()
     local dap = require "dap"
     dap.adapters.python = {
@@ -46,7 +45,14 @@ local M = {
     {
       "<leader>da",
       function()
-        require("dap").continue { before = get_args }
+        local args_str = vim.fn.input "Arguments: "
+        require("dap").continue {
+          before = function(config)
+            config = vim.deepcopy(config)
+            config.args = vim.split(args_str, " +")
+            return config
+          end,
+        }
       end,
       desc = "Run with Args",
     },
@@ -144,46 +150,46 @@ local M = {
   },
 
   dependencies = {
-    "mfussenegger/nvim-dap",
     "nvim-neotest/nvim-nio",
     {
       "jay-babu/mason-nvim-dap.nvim",
-      ensure_installed = { "python" },
-
-      {
-        "rcarriga/nvim-dap-ui",
-        keys = {
-          {
-            "<leader>du",
-            function()
-              require("dapui").toggle {}
-            end,
-            desc = "Dap UI",
-          },
-          {
-            "<leader>de",
-            function()
-              require("dapui").eval()
-            end,
-            desc = "Eval",
-            mode = { "n", "v" },
-          },
-        },
-        config = function(_, opts)
-          local dap = require "dap"
-          local dapui = require "dapui"
-          dapui.setup(opts)
-          dap.listeners.after.event_initialized["dapui_config"] = function()
-            dapui.open {}
-          end
-          dap.listeners.before.event_terminated["dapui_config"] = function()
-            dapui.close {}
-          end
-          dap.listeners.before.event_exited["dapui_config"] = function()
-            dapui.close {}
-          end
-        end,
+      opts = {
+        ensure_installed = { "python" },
       },
+    },
+    {
+      "rcarriga/nvim-dap-ui",
+      keys = {
+        {
+          "<leader>du",
+          function()
+            require("dapui").toggle {}
+          end,
+          desc = "Dap UI",
+        },
+        {
+          "<leader>de",
+          function()
+            require("dapui").eval()
+          end,
+          desc = "Eval",
+          mode = { "n", "v" },
+        },
+      },
+      config = function(_, opts)
+        local dap = require "dap"
+        local dapui = require "dapui"
+        dapui.setup(opts)
+        dap.listeners.after.event_initialized["dapui_config"] = function()
+          dapui.open {}
+        end
+        dap.listeners.before.event_terminated["dapui_config"] = function()
+          dapui.close {}
+        end
+        dap.listeners.before.event_exited["dapui_config"] = function()
+          dapui.close {}
+        end
+      end,
     },
   },
 }
