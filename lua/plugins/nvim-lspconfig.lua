@@ -22,10 +22,9 @@ local M = {
     event = "User FilePost",
     dependencies = {
         {
-            "williamboman/mason-lspconfig.nvim",
+            "mason-org/mason-lspconfig.nvim",
             opts = {
                 ensure_installed = servers,
-                automatic_installation = true,
                 automatic_enable = false,
             },
         },

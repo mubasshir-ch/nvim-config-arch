@@ -1,5 +1,5 @@
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
   init = function()
     dofile(vim.g.base46_cache .. "mason")
   end,
