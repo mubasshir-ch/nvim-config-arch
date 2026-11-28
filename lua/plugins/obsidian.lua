@@ -1,34 +1,40 @@
+local vault_path = vim.fn.expand "~/obsidian-vault"
+
 return {
-    "epwalsh/obsidian.nvim",
-    version = "*", -- use latest release instead of latest commit
+    "obsidian-nvim/obsidian.nvim",
+    version = "*",
     lazy = true,
-    ft = "markdown",
+    event = {
+        "BufReadPre " .. vault_path .. "/**.md",
+        "BufNewFile " .. vault_path .. "/**.md",
+    },
     cond = function()
-        return vim.fn.isdirectory(vim.fn.expand "~/Obsidian Vault") == 1
+        return vim.fn.isdirectory(vault_path) == 1
     end,
     dependencies = {
         "nvim-lua/plenary.nvim",
     },
     keys = {
-        { "<leader>od", "<cmd>ObsidianToday<cr>",       desc = "Obsidian: Today's Note" },
-        { "<leader>oy", "<cmd>ObsidianYesterday<cr>",   desc = "Obsidian: Yesterday's Note" },
-        { "<leader>on", "<cmd>ObsidianNew<cr>",         desc = "Obsidian: New Note" },
-        { "<leader>os", "<cmd>ObsidianSearch<cr>",      desc = "Obsidian: Search Vault" },
-        { "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Obsidian: Quick Switch Note" },
-        { "<leader>ob", "<cmd>ObsidianBacklinks<cr>",   desc = "Obsidian: Show Backlinks" },
-        { "<leader>ot", "<cmd>ObsidianTags<cr>",        desc = "Obsidian: Search Tags" },
-        { "<leader>oi", "<cmd>ObsidianTemplate<cr>",    desc = "Obsidian: Insert Template" },
-        { "<leader>ol", "<cmd>ObsidianLink<cr>",        desc = "Obsidian: Link Relation" },
-        { "<leader>op", "<cmd>ObsidianPasteImg<cr>",    desc = "Obsidian: Paste Image" },
-        { "<leader>oo", "<cmd>ObsidianOpen<cr>",        desc = "Obsidian: Open in App" },
-        { "<leader>ol", ":ObsidianLink<cr>",            mode = "v",                          desc = "Obsidian: Link Selection" },
-        { "<leader>on", ":ObsidianLinkNew<cr>",         mode = "v",                          desc = "Obsidian: New Note from Selection" },
+        { "<leader>od", "<cmd>Obsidian today<cr>", desc = "Obsidian: Today's Note" },
+        { "<leader>oy", "<cmd>Obsidian yesterday<cr>", desc = "Obsidian: Yesterday's Note" },
+        { "<leader>on", "<cmd>Obsidian new<cr>", desc = "Obsidian: New Note" },
+        { "<leader>os", "<cmd>Obsidian search<cr>", desc = "Obsidian: Search Vault" },
+        { "<leader>oq", "<cmd>Obsidian quick_switch<cr>", desc = "Obsidian: Quick Switch Note" },
+        { "<leader>ob", "<cmd>Obsidian backlinks<cr>", desc = "Obsidian: Show Backlinks" },
+        { "<leader>ot", "<cmd>Obsidian tags<cr>", desc = "Obsidian: Search Tags" },
+        { "<leader>oi", "<cmd>Obsidian template<cr>", desc = "Obsidian: Insert Template" },
+        { "<leader>ol", "<cmd>Obsidian link<cr>", desc = "Obsidian: Link Relation" },
+        { "<leader>op", "<cmd>Obsidian paste_img<cr>", desc = "Obsidian: Paste Image" },
+        { "<leader>oo", "<cmd>Obsidian open<cr>", desc = "Obsidian: Open in App" },
+        { "<leader>ol", ":Obsidian link<cr>", mode = "v", desc = "Obsidian: Link Selection" },
+        { "<leader>on", ":Obsidian link_new<cr>", mode = "v", desc = "Obsidian: New Note from Selection" },
     },
     opts = {
+        legacy_commands = false,
         workspaces = {
             {
                 name = "personal",
-                path = "~/Obsidian Vault/",
+                path = "~/obsidian-vault/",
             },
         },
         daily_notes = {
@@ -44,7 +50,8 @@ return {
             substitutions = {},
         },
         completion = {
-            nvim_cmp = false, -- Disable nvim-cmp integration since blink.cmp is used
+            blink = true,
+            nvim_cmp = false,
             min_chars = 2,
         },
         -- Custom note ID function to keep file names human-readable
@@ -57,12 +64,10 @@ return {
                 return tostring(os.time())
             end
         end,
-        -- Optional, configure bullet formatting for checkboxes
         ui = {
             enable = true,
             update_debounce = 200,
             checkboxes = {
-                -- Custom characters or icons for checkboxes
                 [" "] = { char = "☐", hl_group = "ObsidianTodo" },
                 ["x"] = { char = "✔", hl_group = "ObsidianDone" },
             },

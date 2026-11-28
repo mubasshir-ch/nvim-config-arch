@@ -52,6 +52,32 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHo
     end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    group = vim.api.nvim_create_augroup("MarkdownCheckboxToggle", { clear = true }),
+    callback = function(args)
+        local buf = args.buf
+        local vault = vim.fs.normalize(vim.fn.expand "~/obsidian-vault")
+        local name = vim.fs.normalize(vim.api.nvim_buf_get_name(buf))
+        if name:sub(1, #vault) == vault then
+            return
+        end
+        vim.keymap.set("n", "<CR>", function()
+            local line = vim.api.nvim_get_current_line()
+            local prefix, state, rest = line:match "^(%s*[-*+] )%[(.)%](.*)$"
+            if not prefix then
+                prefix, state, rest = line:match "^(%s*%d+[%.%)] )%[(.)%](.*)$"
+            end
+            if prefix then
+                local next_state = (state == " ") and "x" or " "
+                vim.api.nvim_set_current_line(prefix .. "[" .. next_state .. "]" .. rest)
+            else
+                vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+            end
+        end, { buffer = buf, desc = "Toggle markdown checkbox" })
+    end,
+})
+
 vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave", "InsertLeave" }, {
     group = vim.api.nvim_create_augroup("AutoSave", { clear = true }),
     callback = function(args)
