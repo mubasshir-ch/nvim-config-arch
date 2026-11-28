@@ -33,11 +33,12 @@
 - [ ] **Reconcile `gr` mapping**: Update `gr` in `lua/configs/lspconfig.lua` so it doesn't collide with Neovim's built-in `grn`/`gra`/`grr`/`gri`/`grt` LSP mappings (eliminates the 400ms `timeoutlen` lag).
 - [x] **Remove hardcoded `wl-clipboard`**: Drop the manual clipboard block in `lua/core/options.lua` and rely on native Wayland/SSH clipboard detection.
 - [ ] **Review disabled built-in plugins**: Re-evaluate disabling `"syntax"` and `"ftplugin"` in `lua/configs/lazy.lua` (re-enable if needed by VimTeX / filetype plugins).
+- [ ] **Full clean LSP setup & `:lsp`**: Clean up LSP config and adopt Neovim 0.12's built-in `:lsp` command (`:lsp status`, `:lsp restart`, `:lsp enable`, `:lsp stop`).
 - [ ] **Verify health**: Run `:Lazy sync` and `:checkhealth` to confirm zero 0.12 deprecation warnings (diagnostics API, treesitter, LSP, `noice.nvim`).
 - [ ] **Optional 0.12 exploration**:
-  - [ ] Try native `in`/`an` treesitter incremental selection, `:restart`, and `:lsp`.
-  - [ ] Evaluate if `noice.nvim` is still needed with 0.12's reduced "Press ENTER" prompts.
-  - [ ] Keep `lazy.nvim` (recommended for NvChad) vs experimenting with `vim.pack`.
+  - [x] Try native `in`/`an` treesitter incremental selection and `:restart`.
+  - [x] Evaluate `noice.nvim`: Keep `noice.nvim` for the floating cmdline/UI (with `snacks.notifier` for notifications).
+  - [x] Package manager: Keep `lazy.nvim` (recommended for NvChad).
 
 ---
 
