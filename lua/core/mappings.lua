@@ -31,7 +31,26 @@ if require("nvconfig").ui.tabufline.enabled then
     end, { desc = "buffer goto prev" })
 
     map("n", "<leader>x", function()
-        require("scope.core").close_buffer()
+        local buf = vim.api.nvim_get_current_buf()
+        if vim.bo[buf].filetype == "nvdash" then
+            return
+        end
+        local scope = require "scope.core"
+        scope.revalidate()
+        local tab_bufs = scope.cache[vim.api.nvim_get_current_tabpage()] or {}
+        if #vim.api.nvim_list_tabpages() == 1 and #tab_bufs <= 1 then
+            if vim.bo[buf].modified then
+                vim.notify("Save or discard changes before closing buffer", vim.log.levels.WARN)
+                return
+            end
+            require("nvchad.nvdash").open()
+            if vim.api.nvim_buf_is_valid(buf) then
+                pcall(vim.api.nvim_buf_delete, buf, { force = false })
+            end
+            scope.revalidate()
+        else
+            scope.close_buffer()
+        end
     end, { desc = "buffer close (smart scope)" })
 end
 -- Native Tabs
