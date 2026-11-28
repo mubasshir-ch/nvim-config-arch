@@ -41,7 +41,6 @@ create_cmd("TSInstallAll", function()
   require("nvim-treesitter").install(opts.ensure_installed)
 end, {})
 
-vim.opt.autoread = true
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
     pattern = "*",
     callback = function()
