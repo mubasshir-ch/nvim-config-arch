@@ -106,6 +106,10 @@ map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
 -- map ctrl + a to select all
 map({ "n", "i", "v" }, "<C-a>", "<Esc>gg0VG$", { noremap = true, silent = true, desc = "Select all" })
 
+-- swap visual p/P so p preserves clipboard/register
+map("x", "p", "P", { desc = "Paste without overwriting register" })
+map("x", "P", "p", { desc = "Paste and overwrite register" })
+
 -- increment / decrement numbers (Alt+= / Alt+-)
 map({ "n", "x" }, "<A-=>", "<C-a>", { desc = "Increment number" })
 map({ "n", "x" }, "<A-->", "<C-x>", { desc = "Decrement number" })
