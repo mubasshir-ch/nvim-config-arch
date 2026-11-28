@@ -62,19 +62,6 @@ vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. d
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
 
-vim.g.clipboard = {
-  name = "wl-clipboard",
-  copy = {
-    ["+"] = "wl-copy",
-    ["*"] = "wl-copy",
-  },
-  paste = {
-    ["+"] = "wl-paste --no-newline",
-    ["*"] = "wl-paste --no-newline",
-  },
-  cache_enabled = true,
-}
-
 -- nvim ufo
 o.foldcolumn = "1"
 o.foldlevel = 99

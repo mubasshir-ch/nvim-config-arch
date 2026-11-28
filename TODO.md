@@ -31,7 +31,7 @@
 - [x] **Use `blink.cmp` LSP capabilities**: Merge `require("blink.cmp").get_lsp_capabilities()` into `vim.lsp.config("*", ...)` (`lua/configs/lspconfig.lua`, `lua/plugins/nvim-lspconfig.lua`).
 - [ ] **Re-enable LSP semantic tokens**: Remove the `semanticTokensProvider = nil` workaround in `lua/configs/lspconfig.lua`.
 - [ ] **Reconcile `gr` mapping**: Update `gr` in `lua/configs/lspconfig.lua` so it doesn't collide with Neovim's built-in `grn`/`gra`/`grr`/`gri`/`grt` LSP mappings (eliminates the 400ms `timeoutlen` lag).
-- [ ] **Remove hardcoded `wl-clipboard`**: Drop the manual clipboard block in `lua/core/options.lua` and rely on native Wayland/SSH clipboard detection.
+- [x] **Remove hardcoded `wl-clipboard`**: Drop the manual clipboard block in `lua/core/options.lua` and rely on native Wayland/SSH clipboard detection.
 - [ ] **Review disabled built-in plugins**: Re-evaluate disabling `"syntax"` and `"ftplugin"` in `lua/configs/lazy.lua` (re-enable if needed by VimTeX / filetype plugins).
 - [ ] **Verify health**: Run `:Lazy sync` and `:checkhealth` to confirm zero 0.12 deprecation warnings (diagnostics API, treesitter, LSP, `noice.nvim`).
 - [ ] **Optional 0.12 exploration**:
