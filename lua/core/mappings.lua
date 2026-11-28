@@ -3,14 +3,8 @@ local map = vim.keymap.set
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
 
-map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
-map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
-map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
-map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
-
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 
-map("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
@@ -101,7 +95,7 @@ map("n", "<leader>i", function()
 end, { desc = "Toggle inlay hints" })
 
 -- map ctrl + s to save (:w)
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "Save file" })
 
 -- Copilot keymaps are handled in lua/plugins/copilot.lua by zbirenbaum/copilot.lua
 -- (The below mappings were for the legacy github/copilot.vim plugin)
@@ -110,7 +104,11 @@ map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 -- map("i", "<C-k>", "copilot#Dismiss()", { expr = true, desc = "Copilot Dismiss" })
 
 -- map ctrl + a to select all
-map({ "n", "i", "v" }, "<C-a>", "gg0VG$", { noremap = true, silent = true })
+map({ "n", "i", "v" }, "<C-a>", "<Esc>gg0VG$", { noremap = true, silent = true, desc = "Select all" })
+
+-- increment / decrement numbers (Alt+= / Alt+-)
+map({ "n", "x" }, "<A-=>", "<C-a>", { desc = "Increment number" })
+map({ "n", "x" }, "<A-->", "<C-x>", { desc = "Decrement number" })
 
 -- Terminal Toggle
 map({ "n", "t" }, "<F2>", function()
@@ -177,8 +175,6 @@ map("n", "<C-j>", "<cmd>TmuxNavigateDown<cr>", { desc = "Tmux Navigate Down" })
 map("n", "<C-k>", "<cmd>TmuxNavigateUp<cr>", { desc = "Tmux Navigate Up" })
 map("n", "<C-l>", "<cmd>TmuxNavigateRight<cr>", { desc = "Tmux Navigate Right" })
 map("n", "<C-\\>", "<cmd>TmuxNavigatePrevious<cr>", { desc = "Tmux Navigate Previous" })
-
-map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { noremap = true, silent = true })
 
 -- map ctrl + backspace to delete the previous word
 map("i", "<C-h>", "<C-w>", { noremap = true, silent = true, desc = "Delete previous word" })

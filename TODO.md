@@ -10,8 +10,8 @@
 - [ ] **Fix keymap collisions & bugs** (`lua/core/mappings.lua`):
   - [x] Resolve `<leader>h` collision between horizontal terminal and Harpoon (`lua/plugins/harpoon.lua`).
   - [x] Resolve Insert-mode `<C-j>/<C-k>/<C-l>` collision with inline completion (`lua/plugins/copilot.lua`).
-  - [ ] Fix Insert-mode `<C-a>` typing `gg0VG$` literally (and decide whether to keep `<C-a>` in Normal mode).
-  - [ ] Deduplicate `<C-h>` (Insert), `<C-h/j/k/l>` (Normal), `<C-s>`, and `<leader>ca`.
+  - [x] Fix Insert-mode `<C-a>` typing `gg0VG$` literally (and decide whether to keep `<C-a>` in Normal mode).
+  - [x] Deduplicate `<C-h>` (Insert), `<C-h/j/k/l>` (Normal), `<C-s>`, and `<leader>ca`.
 - [ ] **Deduplicate options** (`lua/core/options.lua`): Remove conflicting 2 vs 4 space indent, duplicate `fillchars`, duplicate `autoread`, and `FoldColumn` highlight reset.
 - [ ] **Minor cleanups**:
   - [ ] Fix ignored top-level `timeout_ms` in `lua/configs/conform.lua` (raise `format_on_save.timeout_ms`).
