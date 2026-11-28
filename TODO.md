@@ -6,7 +6,7 @@
 - [x] **Replace archived `dressing.nvim`**: Removed `dressing.nvim` with `avante.nvim` and configured `folke/snacks.nvim` (`picker.ui_select`, `input`, `notifier`) in `lua/plugins/snacks.lua`.
 - [ ] **Migrate `obsidian.nvim`**: Switch `epwalsh/obsidian.nvim` to the active `obsidian-nvim/obsidian.nvim` fork and enable native `blink.cmp` completion (`lua/plugins/obsidian.lua`).
 - [ ] **Fix `nvim-treesitter` (`main` branch)**: Add `branch = "main"`, `build = ":TSUpdate"`, `lazy = false`; install `tree-sitter` CLI; drop ignored `ensure_installed`/`highlight` from `setup()`; exclude `tex` from `vim.treesitter.start()` so VimTeX regex highlighting/conceal works (`lua/plugins/nvim-treesitter.lua`, `lua/configs/treesitter.lua`, `lua/core/autocmds.lua`).
-- [ ] **Remove `nvim-cmp` leftovers**: Replace manual capabilities in `lua/configs/lspconfig.lua` with `blink.cmp`, clean `ui.cmp` in `lua/configs/nvconfig.lua`, and remove `nvim-cmp` from `lazy-lock.json`.
+- [x] **Remove `nvim-cmp` leftovers**: Replaced manual capabilities in `lua/configs/lspconfig.lua` with `blink.cmp`, removed `nvim-cmp` from `lua/plugins/blink.lua` and `lazy-lock.json` (kept `ui.cmp` in `nvconfig.lua` since `nvchad.blink` reads it).
 - [ ] **Fix keymap collisions & bugs** (`lua/core/mappings.lua`):
   - [x] Resolve `<leader>h` collision between horizontal terminal and Harpoon (`lua/plugins/harpoon.lua`).
   - [x] Resolve Insert-mode `<C-j>/<C-k>/<C-l>` collision with inline completion (`lua/plugins/copilot.lua`).
@@ -28,7 +28,7 @@
 
 - [ ] **Drop manual `lsp/*.lua` loading**: Remove the `dofile()` loop in `lua/plugins/nvim-lspconfig.lua` (Neovim 0.11+/0.12 auto-loads `lsp/<server>.lua` via `vim.lsp.enable()`).
 - [ ] **Simplify `lsp/basedpyright.lua`**: Remove static startup `cwd()` `pyproject.toml` regex parsing and rely on basedpyright's native `pyproject.toml` detection.
-- [ ] **Use `blink.cmp` LSP capabilities**: Merge `require("blink.cmp").get_lsp_capabilities()` into `vim.lsp.config("*", ...)` (`lua/configs/lspconfig.lua`, `lua/plugins/nvim-lspconfig.lua`).
+- [x] **Use `blink.cmp` LSP capabilities**: Merge `require("blink.cmp").get_lsp_capabilities()` into `vim.lsp.config("*", ...)` (`lua/configs/lspconfig.lua`, `lua/plugins/nvim-lspconfig.lua`).
 - [ ] **Re-enable LSP semantic tokens**: Remove the `semanticTokensProvider = nil` workaround in `lua/configs/lspconfig.lua`.
 - [ ] **Reconcile `gr` mapping**: Update `gr` in `lua/configs/lspconfig.lua` so it doesn't collide with Neovim's built-in `grn`/`gra`/`grr`/`gri`/`grt` LSP mappings (eliminates the 400ms `timeoutlen` lag).
 - [ ] **Remove hardcoded `wl-clipboard`**: Drop the manual clipboard block in `lua/core/options.lua` and rely on native Wayland/SSH clipboard detection.
