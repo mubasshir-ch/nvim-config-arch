@@ -10,10 +10,9 @@ local options = {
         cpp = { "clang_format" },
         markdown = { "prettier" },
     },
-    timeout_ms = 5000,
     format_on_save = {
         -- These options will be passed to conform.format()
-        timeout_ms = 500,
+        timeout_ms = 2500,
         lsp_format = "fallback",
         async = false,
     },

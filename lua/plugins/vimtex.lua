@@ -23,8 +23,13 @@ local M = {
       sections = 1,
       styles = 1,
     }
-    vim.opt.conceallevel = 2
-    vim.opt.concealcursor = "nc"
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "tex", "plaintex" },
+      callback = function()
+        vim.opt_local.conceallevel = 2
+        vim.opt_local.concealcursor = "nc"
+      end,
+    })
 
     vim.g.vimtex_compiler_latexmk = {
       aux_dir = "aux", -- create a directory called aux that will contain all the auxiliary files

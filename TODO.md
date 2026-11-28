@@ -13,11 +13,11 @@
   - [x] Fix Insert-mode `<C-a>` typing `gg0VG$` literally (and decide whether to keep `<C-a>` in Normal mode).
   - [x] Deduplicate `<C-h>` (Insert), `<C-h/j/k/l>` (Normal), `<C-s>`, and `<leader>ca`.
 - [x] **Deduplicate options** (`lua/core/options.lua`): Remove conflicting 2 vs 4 space indent, duplicate `fillchars`, duplicate `autoread`, and `FoldColumn` highlight reset.
-- [ ] **Minor cleanups**:
-  - [ ] Fix ignored top-level `timeout_ms` in `lua/configs/conform.lua` (raise `format_on_save.timeout_ms`).
-  - [ ] Detect `.venv`/`$VIRTUAL_ENV` instead of hardcoding `/usr/bin/python3` in `lua/plugins/nvim-dap.lua`.
-  - [ ] Lazy-load `vim-be-good` on `cmd = "VimBeGood"` (`lua/plugins/vim-be-good.lua`).
-  - [ ] Scope VimTeX `conceallevel`/`concealcursor` to `FileType tex` (`lua/plugins/vimtex.lua`).
+- [x] **Minor cleanups**:
+  - [x] Fix ignored top-level `timeout_ms` in `lua/configs/conform.lua` (raise `format_on_save.timeout_ms`).
+  - [x] Detect `.venv`/`$VIRTUAL_ENV` instead of hardcoding `/usr/bin/python3` in `lua/plugins/nvim-dap.lua`.
+  - [x] Lazy-load `vim-be-good` on `cmd = "VimBeGood"` (`lua/plugins/vim-be-good.lua`).
+  - [x] Scope VimTeX `conceallevel`/`concealcursor` to `FileType tex` (`lua/plugins/vimtex.lua`).
   - [x] Delete empty `nvim.log`.
 
 ---

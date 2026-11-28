@@ -15,7 +15,18 @@ local M = {
         name = "Launch file",
         program = "${file}", -- This will launch the current file
         pythonPath = function()
-          return "/usr/bin/python3" -- or use a virtualenv path
+          local venv = os.getenv "VIRTUAL_ENV"
+          if venv and vim.fn.executable(venv .. "/bin/python") == 1 then
+            return venv .. "/bin/python"
+          end
+          local cwd = vim.fn.getcwd()
+          for _, dir in ipairs { ".venv", "venv" } do
+            local candidate = cwd .. "/" .. dir .. "/bin/python"
+            if vim.fn.executable(candidate) == 1 then
+              return candidate
+            end
+          end
+          return "/usr/bin/python3"
         end,
       },
     }
