@@ -51,3 +51,21 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHo
         end
     end,
 })
+
+vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave", "InsertLeave" }, {
+    group = vim.api.nvim_create_augroup("AutoSave", { clear = true }),
+    callback = function(args)
+        local buf = args.buf
+        if
+            vim.api.nvim_buf_is_valid(buf)
+            and vim.bo[buf].modified
+            and vim.bo[buf].buftype == ""
+            and vim.bo[buf].modifiable
+            and vim.api.nvim_buf_get_name(buf) ~= ""
+        then
+            vim.api.nvim_buf_call(buf, function()
+                vim.cmd "silent! noautocmd write"
+            end)
+        end
+    end,
+})
