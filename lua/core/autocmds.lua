@@ -28,17 +28,19 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
-  callback = function()
-    pcall(vim.treesitter.start)
+  callback = function(args)
+    local ft = vim.bo[args.buf].filetype
+    if ft ~= "tex" and ft ~= "plaintex" and ft ~= "bib" then
+      pcall(vim.treesitter.start, args.buf)
+    end
   end,
 })
 
 local create_cmd = vim.api.nvim_create_user_command
 
 create_cmd("TSInstallAll", function()
-  local spec = require("lazy.core.config").plugins["nvim-treesitter"]
-  local opts = type(spec.opts) == "function" and spec.opts() or (type(spec.opts) == "table" and spec.opts or {})
-  require("nvim-treesitter").install(opts.ensure_installed)
+  local ts_cfg = require "configs.treesitter"
+  require("nvim-treesitter").install(ts_cfg.ensure_installed)
 end, {})
 
 vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {

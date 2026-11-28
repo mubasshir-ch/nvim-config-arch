@@ -1,4 +1,4 @@
-local options = {
+return {
     ensure_installed = {
         "vim",
         "lua",
@@ -25,10 +25,4 @@ local options = {
         "luadoc",
         "printf",
     },
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { "latex" }, -- Needed for vimtex!
-    },
 }
-
-return options

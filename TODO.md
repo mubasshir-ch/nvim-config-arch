@@ -5,9 +5,9 @@
 - [ ] **Update Mason repos**: Switch `williamboman/mason.nvim` and `williamboman/mason-lspconfig.nvim` to `mason-org/*` and remove deprecated `automatic_installation = true` (`lua/plugins/mason.lua`, `lua/plugins/nvim-lspconfig.lua`).
 - [x] **Replace archived `dressing.nvim`**: Removed `dressing.nvim` with `avante.nvim` and configured `folke/snacks.nvim` (`picker.ui_select`, `input`, `notifier`) in `lua/plugins/snacks.lua`.
 - [ ] **Migrate `obsidian.nvim`**: Switch `epwalsh/obsidian.nvim` to the active `obsidian-nvim/obsidian.nvim` fork and enable native `blink.cmp` completion (`lua/plugins/obsidian.lua`).
-- [ ] **Fix `nvim-treesitter` (`main` branch)**: Add `branch = "main"`, `build = ":TSUpdate"`, `lazy = false`; install `tree-sitter` CLI; drop ignored `ensure_installed`/`highlight` from `setup()`; exclude `tex` from `vim.treesitter.start()` so VimTeX regex highlighting/conceal works (`lua/plugins/nvim-treesitter.lua`, `lua/configs/treesitter.lua`, `lua/core/autocmds.lua`).
+- [x] **Fix `nvim-treesitter` (`main` branch)**: Add `branch = "main"`, `build = ":TSUpdate"`, `lazy = false`; install `tree-sitter` CLI; drop ignored `ensure_installed`/`highlight` from `setup()`; exclude `tex` from `vim.treesitter.start()` so VimTeX regex highlighting/conceal works (`lua/plugins/nvim-treesitter.lua`, `lua/configs/treesitter.lua`, `lua/core/autocmds.lua`).
 - [x] **Remove `nvim-cmp` leftovers**: Replaced manual capabilities in `lua/configs/lspconfig.lua` with `blink.cmp`, removed `nvim-cmp` from `lua/plugins/blink.lua` and `lazy-lock.json` (kept `ui.cmp` in `nvconfig.lua` since `nvchad.blink` reads it).
-- [ ] **Fix keymap collisions & bugs** (`lua/core/mappings.lua`):
+- [x] **Fix keymap collisions & bugs** (`lua/core/mappings.lua`):
   - [x] Resolve `<leader>h` collision between horizontal terminal and Harpoon (`lua/plugins/harpoon.lua`).
   - [x] Resolve Insert-mode `<C-j>/<C-k>/<C-l>` collision with inline completion (`lua/plugins/copilot.lua`).
   - [x] Fix Insert-mode `<C-a>` typing `gg0VG$` literally (and decide whether to keep `<C-a>` in Normal mode).
